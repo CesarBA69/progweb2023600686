@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocales consonantes y EFE</title>
+</head>
+<body>
+    <h2>Cadena murciélago</h2>
+    <p><strong>Cadena Original:</strong> <span id="original"></span></p>
+    <p><strong>Número de Vocales:</strong> <span id="numVocales"></span></p>
+    <p><strong>Número de Consonantes:</strong> <span id="numConsonantes"></span></p>
+    <p><strong>Idioma de la EFE:</strong> <span id="efe"></span></p>
+
+    <script>
+        function analizarCadena(cadena) {
+            let vocales = "aeiouAEIOUáéíóúÁÉÍÓÚ";
+            let numVocales = 0;
+            let numConsonantes = 0;
+            let cadenaEFE = "";
+
+            for (let letra of cadena) {
+                if (vocales.includes(letra)) {
+                    numVocales++;
+                    cadenaEFE += letra + "f" + letra;
+                } else if (letra.match(/[a-zA-ZáéíóúÁÉÍÓÚ]/)) {
+                    numConsonantes++;
+                    cadenaEFE += letra;
+                } else {
+                    cadenaEFE += letra; // Mantiene otros caracteres intactos
+                }
+            }
+
+            // Mostrar los resultados en la página
+            document.getElementById("original").textContent = cadena;
+            document.getElementById("numVocales").textContent = numVocales;
+            document.getElementById("numConsonantes").textContent = numConsonantes;
+            document.getElementById("efe").textContent = cadenaEFE;
+        }
+
+        // Cadena a analizar
+        let palabra = "murciélago";
+        analizarCadena(palabra);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+<title>Serie de numeros del 2 al 400</title>
+</head>
+<body>
+
+    <h2>Serie del 2 al 400</h2>
+    <p id="serie"></p>
+    <p><strong>El promedio es de:</strong> <span id="promedio"></span></p>
+    <p><strong>La moda es de:</strong> <span id="moda"></span></p>
+    <p><strong>La mediana es de:</strong> <span id="mediana"></span></p>
+    
+    <script>
+        function generarNumeros() {
+            let numeros = [];
+            
+            for (let i = 2; i <= 400; i += 2) {
+                numeros.push(i);
+            }
+            return numeros;
+        }
+
+
+
+        function promedio(numeros) {
+            let suma = 0;
+            
+            for (let i = 0; i < numeros.length; i++) {
+                suma += numeros[i];
+            }
+            return suma / numeros.length;
+        }
+
+
+
+        function mediana(numeros) {
+            let mitad = Math.floor(numeros.length / 2);
+            return (numeros[mitad - 1] + numeros[mitad]) / 2;
+        }
+
+
+
+        function moda(numeros) {
+    let frecuencia = {};
+    let maxFrecuencia = 1;
+    let moda = "No hay moda";
+
+    for (let num of numeros) {
+        frecuencia[num] = (frecuencia[num] || 0) + 1;
+        if (frecuencia[num] > maxFrecuencia) {
+            maxFrecuencia = frecuencia[num];
+            moda = num;
+        } else if (frecuencia[num] === maxFrecuencia) {
+            moda += ", " + num;
+        }
+    }
+
+    return maxFrecuencia === 1 ? "No hay moda" : moda;
+}
+
+
+
+        let serie = generarNumeros();
+        document.getElementById("serie").textContent = serie.join(", ");
+        document.getElementById("promedio").textContent = promedio(serie).toFixed(2);
+        document.getElementById("mediana").textContent = mediana(serie);
+        document.getElementById("moda").textContent = moda(serie);
+    </script>
+</body>
+</html>
