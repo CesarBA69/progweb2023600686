@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function procesarArreglo() {
+            let arreglo = [10, "Pongame", true, 5, "diez", false, 20, "profe :D", true];
+
+            let sumaNumeros = 0;
+            let concatenacionCadenas = "";
+            let andBooleanos = true;
+
+            for (let elemento of arreglo) {
+                if (typeof elemento === "number") {
+                    sumaNumeros += elemento;
+                } else if (typeof elemento === "string") {
+                    concatenacionCadenas += elemento + " ";
+                } else if (typeof elemento === "boolean") {
+                    andBooleanos = andBooleanos && elemento;
+                }
+            }
+
+            document.getElementById("arreglo").textContent = "Arreglo: " + JSON.stringify(arreglo);
+            document.getElementById("suma").textContent = "Suma de Números: " + sumaNumeros;
+            document.getElementById("cadenas").textContent = "Concatenación de Cadenas: " + concatenacionCadenas.trim();
+            document.getElementById("booleanos").textContent = "AND de Booleanos: " + andBooleanos;
+        }
+    </script>
+</head>
+<body onload="procesarArreglo()">
+    <p id="arreglo"></p>
+    <p id="suma"></p>
+    <p id="cadenas"></p>
+    <p id="booleanos"></p>
+</body>
+</html>
+

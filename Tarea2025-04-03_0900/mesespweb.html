@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meses del Ano</title>
+    <script>
+        function mostrarMeses() {
+            let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            let listaMeses = "";
+            
+            for (let i = 0; i < meses.length; i++) {
+                listaMeses += (i + 1) + "° " + meses[i] + "<br>";
+            }
+            document.getElementById("meses").innerHTML = listaMeses;
+        }
+    </script>
+</head>
+<body onload="mostrarMeses()">
+    <h2>Meses del Año</h2>
+    <div id="meses"></div>
+</body>
+</html>
