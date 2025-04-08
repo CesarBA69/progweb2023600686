@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Teclado WASD + ZX</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .fila {
+            display: flex;
+            justify-content: center;
+            margin: 5px;
+        }
+
+        .tecla {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            font-size: 24px;
+            transition: background-color 0.2s;
+        }
+
+        .rojo    { background-color: red; color: white; }
+        .azul    { background-color: blue; color: white; }
+        .verde   { background-color: green; color: white; }
+        .amarillo{ background-color: yellow; color: black; }
+        .naranja { background-color: orange; color: black; }
+        .morado  { background-color: purple; color: white; }
+    </style>
+    <script>
+        const colores = {
+            'w': 'rojo',
+            'a': 'azul',
+            's': 'verde',
+            'd': 'amarillo',
+            'z': 'naranja',
+            'x': 'morado'
+        };
+
+        function agregarListeners() {
+            document.addEventListener('keydown', function(event) {
+                const tecla = event.key.toLowerCase();
+                if (colores[tecla]) {
+                    const el = document.getElementById(`tecla-${tecla}`);
+                    if (el) {
+                        el.classList.add(colores[tecla]);
+                    }
+                }
+            });
+
+            document.addEventListener('keyup', function(event) {
+                const tecla = event.key.toLowerCase();
+                if (colores[tecla]) {
+                    const el = document.getElementById(`tecla-${tecla}`);
+                    if (el) {
+                        el.classList.remove(colores[tecla]);
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="agregarListeners()">
+    <div class="fila">
+        <div class="tecla" id="tecla-w">W</div>
+    </div>
+    <div class="fila">
+        <div class="tecla" id="tecla-a">A</div>
+        <div class="tecla" id="tecla-s">S</div>
+        <div class="tecla" id="tecla-d">D</div>
+    </div>
+    <div class="fila">
+        <div class="tecla" id="tecla-z">Z</div>
+        <div class="tecla" id="tecla-x">X</div>
+    </div>
+</body>
+</html>
