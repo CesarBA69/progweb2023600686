@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dulzón</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Estilos solo para el carrusel personalizado */
+    .carrusel-viewport {
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carrusel-imagenes {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carrusel-imagenes img {
+      min-width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="img/logo.png" alt="Logo" class="logo" />
+      <span class="nombre-logo">Dulzón</span>
+    </div>
+
+    <nav class="nav-center">
+      <button class="nav-link" onclick="mostrarSeccion('inicio')">Inicio</button>
+      <button class="nav-link" onclick="mostrarSeccion('promociones')">Promociones</button>
+      <button class="nav-link" onclick="mostrarSeccion('productos')">Productos</button>
+    </nav>
+
+    <div class="nav-right">
+      <button class="btn btn-login" onclick="location.href='login_cliente.html'">Iniciar sesión</button>
+      <button class="btn btn-register" onclick="location.href='registro_cliente.html'">Regístrate</button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section id="inicio" class="seccion">
+      <h2>Novedades</h2>
+
+      <div class="carrusel-viewport">
+        <div id="carrusel" class="carrusel-imagenes">
+          <img src="img/cocacolaoreo.jpeg" alt="Cocacola Oreo">
+          <img src="img/cocacolavainilla.jpeg" alt="Cocacola Vainilla">
+          <img src="img/doritosazules.jpeg" alt="Doritos Azules">
+          <img src="img/doritosbbq.jpeg" alt="Doritos BBQ">
+          <img src="img/doritosflamingnacho.jpeg" alt="Doritos Flaming Nacho">
+          <img src="img/doritoshamburguer.jpeg" alt="Doritos Hamburguer">
+          <img src="img/oreomatcha.jpeg" alt="Oreo Matcha">
+        </div>
+      </div>
+    </section>
+
+    <section id="promociones" class="seccion hidden">
+      <h2>Promociones</h2>
+      <p>Aquí irán las promociones destacadas.</p>
+    </section>
+
+    <section id="productos" class="seccion hidden">
+      <h2>Productos</h2>
+      <p>Catálogo de productos.</p>
+    </section>
+  </main>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS personalizado -->
+  <script>
+    function mostrarSeccion(id) {
+      const secciones = document.querySelectorAll('.seccion');
+      secciones.forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    // Carrusel personalizado
+    let index = 0;
+    const carrusel = document.getElementById("carrusel");
+    const total = carrusel.getElementsByTagName("img").length;
+
+    function showNextImage() {
+      index = (index + 1) % total;
+      carrusel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    setInterval(showNextImage, 3000);
+  </script>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Trabajador</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="form-container">
+    <h2>Inicio de Sesión - Trabajador</h2>
+    
+
+    <form action="login_trabajador.php" method="POST" onsubmit="return validarTrabajador()">
+      <label for="rol">Rol:</label>
+      <select id="rol" name="rol" required>
+        <option value="">Selecciona...</option>
+        <option value="gerente">Gerente</option>
+        <option value="cajero">Cajero</option>
+      </select>
+
+      <label for="usuario">Usuario:</label>
+      <input type="text" id="usuario" name="usuario" required>
+
+      <label for="contrasena">Contraseña:</label>
+      <input type="password" id="contrasena" name="contrasena" required>
+
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <p id="mensaje"></p>
+    <a href="index.html">Volver al inicio</a>
+  </main>
+
+  <script>
+    function validarTrabajador() {
+      const rol = document.getElementById("rol").value;
+      const pass = document.getElementById("contrasena").value;
+      const mensaje = document.getElementById("mensaje");
+      let regex;
+
+      if (rol === "gerente") {
+        regex = /^[a-zA-Z]+$/; // solo letras para los gerentes en lo que se mejora la seguridad
+      } else if (rol === "cajero") {
+        regex = /^[0-9]+$/; // solo numeros para los cajeros en lo que vemos como mejoramos lo de la seguridad
+      } else {
+        mensaje.textContent = "Selecciona un rol válido.";
+        mensaje.style.color = "red";
+        return false;
+      }
+
+      if (!regex.test(pass)) {
+        mensaje.textContent = "Contraseña no válida para el rol seleccionado.";
+        mensaje.style.color = "red";
+        return false;
+      }
+
+      // cuando se llena bien se envia el formulario
+      return true;
+    }
+  </script>
+</body>
+</html>
